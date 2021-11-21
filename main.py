@@ -51,9 +51,9 @@ async def send_welcome(message: types.Message):
     print(f'muted for {round(mute_time)*60*60}')
 
 
-@dp.message_handler(text_contains='_bot', ignore_case=True, chat_id=CHAT_ID)
-@dp.message_handler(text_contains='zapravka', ignore_case=True, chat_id=CHAT_ID)
-@dp.message_handler(text_contains='auto', ignore_case=True, chat_id=CHAT_ID)
+@dp.message_handler(text_contains='_bot', chat_id=CHAT_ID)
+@dp.message_handler(text_contains='zapravka', chat_id=CHAT_ID)
+@dp.message_handler(text_contains='auto', chat_id=CHAT_ID)
 async def send_welcome(message: types.Message):
     user_id = message.from_user.id
     await message.delete()
