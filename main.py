@@ -51,7 +51,9 @@ async def send_welcome(message: types.Message):
     print(f'muted for {round(mute_time)*60*60}')
 
 
-@dp.message_handler(Text(equals=BANNED_WORDS, ignore_case=True), chat_id=CHAT_ID)
+@dp.message_handler(text_contains='_bot', ignore_case=True), chat_id=CHAT_ID)
+@dp.message_handler(text_contains='zapravka', ignore_case=True), chat_id=CHAT_ID)
+@dp.message_handler(text_contains='auto', ignore_case=True), chat_id=CHAT_ID)
 async def send_welcome(message: types.Message):
     user_id = message.from_user.id
     await message.delete()
@@ -59,7 +61,7 @@ async def send_welcome(message: types.Message):
         await bot.restrict_chat_member(chat_id=CHAT_ID, user_id=user_id,
                                     until_date=time.time() + round(9999 * 60 * 60))
     except:
-        await message.answer('Свой среди чужих..................
+        await message.answer('Свой среди чужих..................')
 
 
 
