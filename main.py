@@ -4,9 +4,14 @@ import time
 API_TOKEN = 'token'
 CHAT_ID = 'chat_id'
 ADMINS = [0,1,3]
-BANNED_WORDS = ['1','2','3','4']
+BANNED_WORDS = ['zapravka','2','3','4']
 # Configure logging
-
+API_TOKEN = input('api_token')
+CHAT_ID = input('what is the chat_id')
+answer = input('admin user_id')
+while answer != 0:
+    ADMINS.append(answer)
+    answer = input('admin user_id. 0 on finish')
 
 # Initialize bot and dispatcher
 bot = Bot(token=API_TOKEN)
