@@ -9,7 +9,7 @@ BANNED_WORDS = ['zapravka','2','3','4']
 API_TOKEN = input('api_token')
 CHAT_ID = input('what is the chat_id')
 answer = input('admin user_id')
-while answer != 0:
+while int(answer) != 0:
     ADMINS.append(answer)
     answer = input('admin user_id. 0 on finish')
 
