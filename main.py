@@ -4,7 +4,7 @@ import time
 API_TOKEN = 'token'
 CHAT_ID = 'chat_id'
 ADMINS = [0,1,3]
-BANNED_WORDS = ['zapravka','2','3','4']
+BANNED_WORDS = ['zapravka']
 # Configure logging
 API_TOKEN = input('api_token')
 CHAT_ID = input('what is the chat_id')
@@ -37,7 +37,7 @@ async def send_welcome(message: types.Message):
     print(f'muted for {round(mute_time)*60*60}')
 
 
-@dp.message_handler(text_contains=BANNED_WORDS, is_chat_admin=CHAT_ID)
+@dp.message_handler(text_contains=BANNED_WORDS, chat_id=CHAT_ID)
 async def send_welcome(message: types.Message):
     user_id = message.from_user.id
     await message.delete()
