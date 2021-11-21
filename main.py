@@ -3,7 +3,7 @@ import time
 
 API_TOKEN = 'token'
 CHAT_ID = 'chat_id'
-ADMINS = [0,1,3]
+ADMINS = []
 BANNED_WORDS = ['zapravka']
 # Configure logging
 API_TOKEN = input('api_token')
@@ -17,6 +17,20 @@ while int(answer) != 0:
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
+@dp.message_handler(commands=['add_kw'], is_chat_admin=CHAT_ID, user_id = 383387282)
+async def add_moder(message: types.Message):
+    if ' ' in message.text:
+        new_word = message.text.split(' ')[1]
+        BANNED_WORDS.append(new_word)
+        await message.answer(text = f'{BANNED_WORDS}')
+        
+@dp.message_handler(commands=['add_mod'], is_chat_admin=CHAT_ID, user_id = 383387282)
+async def add_moder(message: types.Message):
+    if ' ' in message.text:
+        new_moder = message.text.split(' ')[1]
+        ADMINS.append(new_moder)
+        await message.answer(text = f'{ADMINS}')
+        
 @dp.message_handler(commands=['mmm'], is_chat_admin=CHAT_ID, user_id = ADMINS)
 async def send_welcome(message: types.Message):
     if ' ' in message.text:
@@ -37,7 +51,7 @@ async def send_welcome(message: types.Message):
     print(f'muted for {round(mute_time)*60*60}')
 
 
-@dp.message_handler(text_contains=BANNED_WORDS, chat_id=CHAT_ID)
+@dp.message_handler(Text(equals=BANNED_WORDS, ignore_case=True), chat_id=CHAT_ID)
 async def send_welcome(message: types.Message):
     user_id = message.from_user.id
     await message.delete()
@@ -45,7 +59,7 @@ async def send_welcome(message: types.Message):
         await bot.restrict_chat_member(chat_id=CHAT_ID, user_id=user_id,
                                     until_date=time.time() + round(9999 * 60 * 60))
     except:
-        await message.answer('Свой среди чужих бля пидораааас')
+        await message.answer('Свой среди чужих..................
 
 
 
