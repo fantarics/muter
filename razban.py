@@ -2,7 +2,7 @@ from aiogram import Bot, Dispatcher, executor, types
 import time
 import asyncio
 
-API_TOKEN = '1939859866:AAEcckHkODkDwIPVjQfUouXcv_sP85xiCQU'
+API_TOKEN = ''
 
 # Configure logging
 
